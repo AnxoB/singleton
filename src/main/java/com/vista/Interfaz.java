@@ -2,68 +2,55 @@ package com.vista;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Interfaz{
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame("Gestor de Tareas");
-        ventana.setSize(600, 400);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+import javax.swing.*;
+import java.awt.*;
 
-        JPanel panel = new JPanel();
+public class Interfaz extends JFrame {
+    public JButton btnListar = new JButton("Listar Tareas");
+    public JButton btnCrear = new JButton("Crear Tarea");
+    public JButton btnMarcar = new JButton("Marcar Completada");
+    public JButton btnEliminar = new JButton("Eliminar Tarea");
+    public JButton btnBuscar = new JButton("Buscar por ID");
+    public JButton btnSalir = new JButton("Salir");
 
+    public JTextArea areaTexto = new JTextArea(15, 40);
 
-        JButton listarTareas = new JButton("Listar Tareas");
-        listarTareas.setBounds(50, 100, 150, 30);
-        panel.add(listarTareas);
-        JButton crearTarea = new JButton("Crear Tarea");
-        crearTarea.setBounds(50, 150, 150, 30);
-        panel.add(crearTarea);
-        JButton eliminarTarea = new JButton("Eliminar Tarea");
-        eliminarTarea.setBounds(50, 200, 150, 30);
-        panel.add(eliminarTarea);
-        JButton buscarTarea = new JButton("Eliminar Tarea");
-        buscarTarea.setBounds(50, 200, 150, 30);
-        panel.add(buscarTarea);
-        
+    public Interfaz() {
 
+        setTitle("Gestor de Tareas - MVC");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ventana.add(panel);
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new GridLayout(6, 1));
+        panelBotones.add(btnListar);
+        panelBotones.add(btnCrear);
+        panelBotones.add(btnMarcar);
+        panelBotones.add(btnEliminar);
+        panelBotones.add(btnBuscar);
+        panelBotones.add(btnSalir);
 
-        listarTareas.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                
-            }
-            
-        });
+        areaTexto.setEditable(false);
 
-        crearTarea.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                
-            }
-            
-        });
+        add(panelBotones, BorderLayout.WEST);
+        add(new JScrollPane(areaTexto), BorderLayout.CENTER);
 
-        eliminarTarea.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                
-            }
-            
-        });
+        setVisible(true);
+    }
 
-        buscarTarea.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                
-            }
-            
-        });
+    public String pedirTexto(String msg) {
+        return JOptionPane.showInputDialog(this, msg);
+    }
 
-        ventana.setVisible(true);
+    public void mostrarMensaje(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
     }
 }

@@ -45,7 +45,7 @@ public class RepositorioTareas {
         boolean b = false;
         Tarea tarea = obtenerPorId(id);
         if (tarea!=null) {
-            tareas.remove(id);
+            tareas.remove(tarea);
             b=true;
         }
         return b;
