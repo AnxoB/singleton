@@ -17,6 +17,7 @@ public class ControladorTareas {
         iniciarEventos();
     }
 
+    // Configura los eventos de los botones en la interfaz
     private void iniciarEventos() {
 
         vista.btnListar.addActionListener(e -> listar());
@@ -28,6 +29,7 @@ public class ControladorTareas {
         vista.btnSalir.addActionListener(e -> System.exit(0));
     }
 
+    // Lista todas las tareas en el área de texto
     private void listar() {
         StringBuilder sb = new StringBuilder();
         for (Tarea t : repo.obtenerTodas()) {
@@ -42,12 +44,14 @@ public class ControladorTareas {
         vista.areaTexto.setText(sb.toString());
     }
 
+    // Metodo para crear una nueva tarea
     private void crear() {
         String titulo = vista.pedirTexto("Título de la tarea:");
         String descripcion = vista.pedirTexto("Descripción:");
 
         if (titulo == null || titulo.isEmpty()) return;
 
+        //Crea y asigna valores a la nueva tarea
         Tarea t = new Tarea();
         t.setTitulo(titulo);
         t.setDescripcion(descripcion);
@@ -58,6 +62,7 @@ public class ControladorTareas {
         vista.mostrarMensaje("Tarea creada con éxito.");
     }
 
+    //Metodo para marcar una tarea como completada
     private void marcar() {
         try {
             int id = Integer.parseInt(vista.pedirTexto("ID de la tarea:"));
